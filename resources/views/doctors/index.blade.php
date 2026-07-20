@@ -10,6 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         Doctor List
+                        <a href="{{ route('doctors.create') }}" class="btn btn-primary btn-sm float-end">Create</a>
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -26,8 +27,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    @foreach ($doctors as $doctor)
+                                @foreach ($doctors as $doctor)
+                                    <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $doctor->name }}</td>
                                         <td>{{ $doctor->department->name }}</td>
@@ -36,19 +37,22 @@
                                         <td>{{ $doctor->phone }}</td>
                                         <td>{{ $doctor->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('doctors.edit', ['id' => $doctor->id]) }}" class="btn btn-sm btn-success">Edit</a>
-                                            <form action="{{ route('doctors.destroy', ['id' => $doctor->id]) }}" method="post" class="d-inline-block">
+                                            <a href="{{ route('doctors.edit', ['id' => $doctor->id]) }}"
+                                                class="btn btn-sm btn-success">Edit</a>
+                                            <form action="{{ route('doctors.destroy', ['id' => $doctor->id]) }}"
+                                                method="post" class="d-inline-block">
                                                 @csrf
                                                 @method('Delete')
 
                                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                                                
+
                                             </form>
                                         </td>
-                                    @endforeach
-                                </tr>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        {{ $doctors->links() }}
                     </div>
                 </div>
             </div>

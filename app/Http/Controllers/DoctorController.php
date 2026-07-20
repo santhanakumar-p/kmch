@@ -13,7 +13,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = Doctor::with('department:id,name')->select('id', 'department_id', 'name', 'phone', 'experience', 'qualification')->get();
+        $doctors = Doctor::with('department:id,name')->select('id', 'department_id', 'name', 'phone', 'experience', 'qualification')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('doctors.index', compact('doctors'));
     }

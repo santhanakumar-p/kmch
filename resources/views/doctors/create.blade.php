@@ -10,6 +10,7 @@
                 <div class="card">
                     <div class="card-header">
                         Create Doctor
+                        <a href="{{ route('doctors.index') }}" class="btn btn-secondary btn-sm float-end">Back</a>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('doctors.store') }}" enctype="multipart/form-data" method="post">
